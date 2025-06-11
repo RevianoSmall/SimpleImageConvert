@@ -1,33 +1,54 @@
-/* Reset & Base Styles */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Fonts & Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to right, #e0f7fa, #fff1f8);
-  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  line-height: 1.6;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  transition: background 0.5s ease-in-out;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(120deg, #e0f7fa, #f8f1ff, #ffeef0);
+  animation: gradientBG 15s ease infinite;
 }
 
-.container {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
+/* Background Animation Canvas */
+#background-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding: 2rem;
-  animation: fadeInUp 1s ease-in-out;
-  transition: transform 0.3s ease;
+  height: 100%;
+  background: linear-gradient(120deg, #e0f7fa, #f8f1ff, #ffeef0);
+  animation: gradientBG 15s ease infinite;
+  z-index: -1;
 }
 
-.container:hover {
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Card */
+.card {
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.card:hover {
   transform: translateY(-5px);
 }
 
@@ -42,124 +63,98 @@ body {
   }
 }
 
-h1 {
-  text-align: center;
-  color: #3f51b5;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-  letter-spacing: 1px;
-  animation: bounceIn 1s ease;
-}
-
-@keyframes bounceIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-label {
-  font-weight: 600;
-  color: #555;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-input[type="file"],
-select,
-input[type="text"] {
-  width: 100%;
-  padding: 0.6rem 1rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-
-input[type="file"]:hover,
-select:hover,
-input[type="text"]:hover {
-  border-color: #3f51b5;
-  background-color: #f9f9ff;
-}
-
-button {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  background-color: #3f51b5;
-  color: white;
-  border: none;
-  border-radius: 8px;
+/* Input Upload Styling */
+.upload-input {
+  border: 2px dashed #ccc;
+  padding: 1rem;
+  border-radius: 0.75rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 1rem;
 }
 
-button:hover {
-  background-color: #303f9f;
-  transform: scale(1.03);
+.upload-input:focus {
+  outline: none;
+  border-color: #6366f1;
+  background-color: #f3f4f6;
 }
 
+/* Select Box */
+.select-box,
+.name-input {
+  padding: 0.65rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  width: 100%;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.select-box:focus,
+.name-input:focus {
+  outline: none;
+  border-color: #6366f1;
+  background-color: #f3f4f6;
+}
+
+/* Button Style */
+.convert-button {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.convert-button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Download Link */
 .download-link {
-  display: none;
+  display: inline-block;
   text-align: center;
   margin-top: 1.5rem;
-  font-weight: bold;
-  color: #3f51b5;
+  font-weight: 600;
+  color: #6366f1;
   text-decoration: underline;
   animation: fadeIn 0.5s ease-in-out;
 }
-.adsterra-banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 60px;
-}
 
-.adsterra-banner iframe {
-  width: 468px !important;
-  height: 60px !important;
-  border: none;
-  margin: 0 auto;
-  display: block;
-  max-width: 100%;
-}
-
-@media (max-width: 500px) {
-  .adsterra-banner iframe {
-    width: 100% !important;
-    height: auto !important;
-  }
-  }
 .download-link:hover {
-  color: #1a237e;
+  color: #4f46e5;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 1.5rem;
-  }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
-  .container {
-    padding: 1.5rem;
-  }
+/* Loader Animation */
+.spinner {
+  border-radius: 50%;
+  border-top: 4px solid transparent;
+  border-right: 4px solid transparent;
+  animation: spin 1s linear infinite;
+}
 
-  input[type="file"],
-  select,
-  input[type="text"] {
-    font-size: 0.95rem;
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
   }
-    }
+}
+
+/* Saweria Donate */
+.saweria-donate a {
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.saweria-donate a:hover {
+  background-color: #15803d;
+}
