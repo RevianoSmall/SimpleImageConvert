@@ -121,7 +121,28 @@ button:hover {
   text-decoration: underline;
   animation: fadeIn 0.5s ease-in-out;
 }
+.adsterra-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60px;
+}
 
+.adsterra-banner iframe {
+  width: 468px !important;
+  height: 60px !important;
+  border: none;
+  margin: 0 auto;
+  display: block;
+  max-width: 100%;
+}
+
+@media (max-width: 500px) {
+  .adsterra-banner iframe {
+    width: 100% !important;
+    height: auto !important;
+  }
+  }
 .download-link:hover {
   color: #1a237e;
 }
