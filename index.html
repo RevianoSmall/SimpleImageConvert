@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-gray-50">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Converter</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script> 
+  <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script> 
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Background Animation -->
+  <div id="background-canvas" class="background fixed top-0 left-0 w-full h-full z-0"></div>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8 relative z-10 flex-grow">
+    <div class="card bg-white/90 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl max-w-3xl mx-auto">
+
+      <!-- Header -->
+      <div class="header text-center py-6 bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Converter Cerdas</h1>
+        <p class="mt-2 text-sm md:text-base opacity-90">Upload, konversi, dan download dalam satu klik</p>
+      </div>
+
+      <!-- Info Aman -->
+      <div class="info text-center text-sm text-gray-500 italic px-6 py-3">
+        File Anda tidak akan tersimpan di server manapun. Semua proses dilakukan secara lokal di browser Anda.
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-section p-6 space-y-6">
+        <div class="upload-group">
+          <label for="imageInput" class="block text-sm font-semibold text-gray-700 mb-2">Upload Gambar atau File</label>
+          <input type="file" id="imageInput" accept="image/*,.pdf,.docx,.zip" multiple class="upload-input w-full" />
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="formatSelect" class="block text-sm font-semibold text-gray-700 mb-2">Format Output</label>
+            <select id="formatSelect" class="select-box w-full">
+              <option value="pdf">PDF</option>
+              <option value="png">PNG</option>
+              <option value="jpg">JPG</option>
+              <option value="webp">WebP</option>
+              <option value="bmp">BMP</option>
+              <option value="zip">ZIP</option>
+              <option value="image-from-file">File to Image</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="fileNameInput" class="block text-sm font-semibold text-gray-700 mb-2">Nama File Hasil</label>
+            <input type="text" id="fileNameInput" placeholder="Masukkan nama file" class="name-input w-full" />
+          </div>
+        </div>
+
+        <button onclick="convert()" class="convert-button w-full mt-4">
+          Convert
+        </button>
+
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="hidden flex justify-center items-center py-4">
+          <div class="spinner w-10 h-10 border-4 border-t-transparent border-indigo-500 rounded-full animate-spin"></div>
+          <span class="ml-3 text-indigo-600 font-medium">Memproses...</span>
+        </div>
+
+        <a id="downloadLink" class="download-link hidden" href="#">Download File</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer text-center text-sm text-gray-500 py-4 bg-white/50 backdrop-blur-sm border-t border-gray-200">
+    &copy; 2025 Smart Converter. Created by AI.
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+          </html>
